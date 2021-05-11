@@ -1,0 +1,34 @@
+#include <ESP8266WiFi.h>
+#include <BlynkSimpleEsp8266.h>
+#define bulb D1//input pin connected to nodemcu
+
+char auth[] = "k9uBh7jAqYLkUIO0VeyY5otIiZB1q9O0";
+//authentication code received fromm Blynk App
+
+// Your WiFi credentials.
+// Set password to "" for open networks.
+char ssid[] = " ";
+char pass[] = "";
+void setup()
+{
+  // Debug console
+  Serial.begin(9600);
+
+  Blynk.begin(auth, ssid, pass);
+  pinMode(bulb,OUTPUT);
+}
+BLYNK_WRITE(V0)//input taken from virtual button on blynk app
+{
+  //param.asInt() gives the value of the button
+  if ( param.asInt()== 1 ) {
+    digitalWrite(bulb,HIGH);
+    Serial.println("Bulb is On");
+  } else {
+    digitalWrite(bulb,LOW);
+    Serial.println("Bulb is Off");
+  }
+  }
+void loop()
+{
+  Blynk.run();
+}
