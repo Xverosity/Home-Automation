@@ -20,7 +20,7 @@ void setup()
 BLYNK_WRITE(V0)//input taken from virtual button on blynk app
 {
   //param.asInt() gives the value of the button
-  if ( param.asInt()== 1 ) {
+  if ( param.asInt()== 0 ) {
     digitalWrite(bulb,HIGH);
     Serial.println("Bulb is On");
   } else {
